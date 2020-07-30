@@ -26,11 +26,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if (empty($_POST["name"])) {
         echo "<span class=\"error\">Error: First name required</span>";
-    } 
+    }
+    
+    // Validation: Name can only contain letters and white space
+    elseif (!preg_match("/^[a-zA-Z ]*$/", $_POST["name"])) {
+        echo "<span class=\"error\">Error: Name can only contain letters</span>";
+    }
     
     elseif (empty($_POST["website"])) {
         echo "<span class=\"error\">Error: Website required</span>";
-    } 
+    }
+    
+    // Validation: Website must be in correct format (www.mysite.com)
+    elseif (!preg_match("/\b(?:https?|ftp):\/\/|www\.[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", 
+    $_POST["website"])) {
+        echo "<span class=\"error\">Error: Website is in wrong format</span>";
+    }
     
     else {
     
