@@ -16,7 +16,32 @@
 
 <body>
 
-<form name="employment" action="" method="post"> 
+<?php
+
+// Variables I will use to store inputed data
+$name = $website = $position = $experience = $estatus = $comments = "";
+
+// An IF statement to see if user has submited a form
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = val($_POST["name"]);
+    $website = val($_POST["website"]);
+    $position = val($_POST["position"]);
+    $experience = val($_POST["experience"]);
+    $estatus = val($_POST["estatus"]);
+    $comments = val($_POST["comments"]);
+}
+
+// A function to validate inputed data
+function val($data) {
+    $data = trim($data);                // remove any unnecesary spaces, tabs or brakes
+    $data = stripslashes($data);        // remove any unnecesary backslashes, thus adding a layer of security
+    $data = htmlspecialchars($data);    // to make suredata is transmitted securely
+    return $data;
+}
+
+?>
+
+<form name="employment" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
  <table width="600" border="0" cellspacing="1" cellpadding="1">
     <tr>
       <td><h2>Employment Application</h2></td>
@@ -89,6 +114,24 @@
     </tr>
   </table>
 </form>
+
+<?php 
+// Display data 
+
+echo "<h2>User Input:</h2>";
+echo "Name: " . $name;
+echo "<br>";
+echo "Website: " . $website;
+echo "<br>";
+echo "Position: " . $position;
+echo "<br>";
+echo "Experience: " . $experience;
+echo "<br>";
+echo "Employment Status: " . $estatus;
+echo "<br>";
+echo "Comments: " . $comments;
+echo "<br>";
+?>
 
 </body>
 </html>
