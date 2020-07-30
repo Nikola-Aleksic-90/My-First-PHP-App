@@ -23,12 +23,25 @@ $name = $website = $position = $experience = $estatus = $comments = "";
 
 // An IF statement to see if user has submited a form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = val($_POST["name"]);
-    $website = val($_POST["website"]);
-    $position = val($_POST["position"]);
-    $experience = val($_POST["experience"]);
-    $estatus = val($_POST["estatus"]);
-    $comments = val($_POST["comments"]);
+    
+    if (empty($_POST["name"])) {
+        echo "<span class=\"error\">Error: First name required</span>";
+    } 
+    
+    elseif (empty($_POST["website"])) {
+        echo "<span class=\"error\">Error: Website required</span>";
+    } 
+    
+    else {
+    
+        $name = val($_POST["name"]);
+        $website = val($_POST["website"]);
+        $position = val($_POST["position"]);
+        $experience = val($_POST["experience"]);
+        $estatus = val($_POST["estatus"]);
+        $comments = val($_POST["comments"]);
+        
+    }
 }
 
 // A function to validate inputed data
