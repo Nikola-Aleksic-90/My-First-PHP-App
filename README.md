@@ -19,3 +19,6 @@ injecting malicious JavaScript code into transmited data. Other added code will 
 
 v1.2 I added validation components to my form. Users need to input name and website in order to submit a form. If user doesn't submit one of this parameters, an error message will 
 pop up at the top of a screen.
+
+v1.3 Continued to validate data. Used preg_match() function to further validate user data. Now user will not be able to input numbers to name field and website will have to be in 
+www.mysite.com format
